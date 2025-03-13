@@ -136,10 +136,10 @@ group by dept_name;
 ## Aggregate Functions – Having Clause
 
 ```sql
-SELECT dept_name, avg (salary) AS avg_salary
+SELECT dept_name, AVG(salary) AS avg_salary
 FROM instructor
-group by dept_name
-having avg (salary) > 42000;
+GROUP BY dept_name
+HAVING AVG(salary) > 42000;
 ```
 # <span style="color: Maroon">Lecture 4</span>
 ## JOIN
@@ -149,48 +149,48 @@ SELECT name, course_id
 FROM  student, takes
 WHERE student.ID = takes.ID;
 ```
-#### <span style="color: DodgerBlue">Natural</span>
+#### <span style="color: DodgerBlue">NATURAL</span>
 ```sql
 SELECT name, course_id
 FROM student NATURAL JOIN takes;
 
-select name, title        
-from student natural join takes, course       
-where takes.course_id = course.course_id;
+SELECT name, title        
+FROM student NATURAL JOIN takes, course       
+WHERE takes.course_id = course.course_id;
 
 select name, title
-from (student natural join takes) join course using (course_id);
+FROM (student NATURAL JOIN takes) JOIN course USING (course_id);
 ```
-## Join Condition
+## JOIN Condition
 ```sql
 select * 
-from student join takes 
-on student.ID = takes.ID
+FROM student JOIN takes 
+ON student.ID = takes.ID
 
 select *
-from student, takes
-where student.ID = takes.ID;
+FROM student, takes
+WHERE student.ID = takes.ID;
 ```
 
-## Left Outer Join
+## Left OUTER JOIN
 
 ```sql
-SELECT * FROM course natural left outer join prereq;
-SELECT * FROM course natural right outer join prereq;
-SELECT * FROM course natural full outer join prereq;
+SELECT * FROM course NATURAL LEFT OUTER JOIN prereq;
+SELECT * FROM course NATURAL RIGHT OUTER JOIN prereq;
+SELECT * FROM course NATURAL FULL OUTER JOIN prereq;
 ```
 
 ## Joined Relations – Examples 
 ```sql
 SELECT * 
-FROM course inner join prereq 
-on course.course_id = prereq.course_id
+FROM course INNER JOIN prereq 
+ON course.course_id = prereq.course_id
 
 SELECT * 
-FROM course left outer join prereq 
-on course.course_id = prereq.course_id
+FROM course LEFT OUTER JOIN prereq 
+ON course.course_id = prereq.course_id
 
-SELECT * FROM course natural right outer join prereq;
+SELECT * FROM course NATURAL RIGHT OUTER JOIN prereq;
 
-SELECT * FROM course full outer join prereq using (course_id);
+SELECT * FROM course FULL OUTER JOIN prereq USING (course_id);
 ```
