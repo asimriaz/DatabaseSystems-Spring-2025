@@ -2,83 +2,83 @@
 
 ```sql
 SELECT name		
-FROM instructor
+FROM instructor;
 ```
 
 ```sql
 SELECT DISTINCT dept_name	
-FROM instructor
+FROM instructor;
 ```
 
 ```sql
 SELECT all dept_name	
-FROM instructor
+FROM instructor;
 ```
 ```sql
 SELECT *		
-FROM instructor
+FROM instructor;
 
-SELECT  '437'
+SELECT  '437';
 
-SELECT '437' AS FOO
+SELECT '437' AS FOO;
 
 SELECT  'A'		
-FROM instructor
+FROM instructor;
 
 ```
 ```sql
 SELECT ID, name, salary/12
-FROM instructor
+FROM instructor;
 
 SELECT ID, name, salary/12  AS monthly_salary
-FROM instructor
+FROM instructor;
 ```
 ## The WHERE Clause
 ```sql
 SELECT name	
 FROM instructor	
-WHERE dept_name = 'Comp. Sci.'
+WHERE dept_name = 'Comp. Sci.';
 
 SELECT name 
 FROM instructor 
-WHERE dept_name = 'Comp. Sci.' AND salary > 70000
+WHERE dept_name = 'Comp. Sci.' AND salary > 70000;
 ```
 ## The FROM Clause
 Find the Cartesian product instructor X teaches
 
 ```sql
 SELECT *		
-FROM instructor, teaches
+FROM instructor, teaches;
 ```
 #### <span style="color: DodgerBlue ">Examples</span>
 ```sql
 SELECT name, course_id
 FROM instructor , teaches
-WHERE instructor.ID = teaches.ID 
+WHERE instructor.ID = teaches.ID; 
 
 SELECT name, course_id
 FROM instructor , teaches
-WHERE instructor.ID = teaches.ID  
-          AND  instructor. dept_name = 'Art'
+WHERE instructor.ID = teaches.ID 
+          AND  instructor. dept_name = 'Art';
 ```
 ## The Rename Operation
 ```sql
 SELECT DISTINCT T.name 
 FROM instructor AS T, instructor AS S 
-WHERE T.salary > S.salary AND S.dept_name = 'Comp. Sci.’
+WHERE T.salary > S.salary AND S.dept_name = 'Comp. Sci.’;
 ```
 ## Ordering the Display of Tuples
 ```sql
-SELECT DISTINCT name FROM instructor order by name
-SELECT DISTINCT name FROM instructor order by name DESC
-SELECT DISTINCT name FROM instructor order by dept_name, name
+SELECT DISTINCT name FROM instructor order by name;
+SELECT DISTINCT name FROM instructor order by name DESC;
+SELECT DISTINCT name FROM instructor order by dept_name, name;
 ```
 ## WHERE Clause Predicates
 SQL includes a `between` comparison operator
 ```sql
 SELECT name 
 FROM instructor 
-WHERE salary between 90000 AND 100000
+WHERE salary between 90000 AND 100000;
 ```
 Tuple comparison
 ```sql
@@ -111,8 +111,8 @@ except
 ## Null Values
 
 ```sql
-SELECT name FROM instructor WHERE salary is null
-SELECT name FROM instructor WHERE salary is not null
+SELECT name FROM instructor WHERE salary is null;
+SELECT name FROM instructor WHERE salary is not null;
 ```
 ## Aggregate Functions 
 ```sql
@@ -165,7 +165,7 @@ FROM (student NATURAL JOIN takes) JOIN course USING (course_id);
 ```sql
 select * 
 FROM student JOIN takes 
-ON student.ID = takes.ID
+ON student.ID = takes.ID;
 
 select *
 FROM student, takes
@@ -184,11 +184,11 @@ SELECT * FROM course NATURAL FULL OUTER JOIN prereq;
 ```sql
 SELECT * 
 FROM course INNER JOIN prereq 
-ON course.course_id = prereq.course_id
+ON course.course_id = prereq.course_id;
 
 SELECT * 
 FROM course LEFT OUTER JOIN prereq 
-ON course.course_id = prereq.course_id
+ON course.course_id = prereq.course_id;
 
 SELECT * FROM course NATURAL RIGHT OUTER JOIN prereq;
 
