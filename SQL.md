@@ -67,6 +67,31 @@ SELECT DISTINCT T.name
 FROM instructor AS T, instructor AS S 
 WHERE T.salary > S.salary AND S.dept_name = 'Comp. Sci.’;
 ```
+
+## Self JOIN
+```sql
+SHOW search_path;
+```
+```sql
+SET SCHEMA 'scott';
+```
+```sql
+SELECT e.ename || ' is the MANAGER of ' || m.ename || ' and he is working as a ' || m.job
+FROM emp e, emp m
+WHERE m.mgr = e.empno;
+```
+```sql
+SET SCHEMA 'public';
+```
+## String Operations
+```sql
+SELECT name FROM instructor WHERE name LIKE 'E%';
+SELECT name FROM instructor WHERE name LIKE 'C%';
+SELECT name FROM instructor WHERE name LIKE '%t';
+SELECT name FROM instructor WHERE name LIKE '____';
+SELECT name FROM instructor WHERE name LIKE '__n%';
+```
+
 ## Ordering the Display of Tuples
 ```sql
 SELECT DISTINCT name FROM instructor order by name;
