@@ -65,11 +65,18 @@ CREATE TABLE job_history
     , PRIMARY KEY (employee_id, start_date)
     ) ;
 
- CREATE TABLE job__GRADES (
+ CREATE TABLE job_grades (
     GRADE_LEVEL VARCHAR(3) PRIMARY KEY,
     LOWEST_SAL NUMERIC(8,2),
     HIGHEST_SAL NUMERIC(8,2)
 );
+
+INSERT INTO job_grades VALUES ('A', 1000, 2999);
+INSERT INTO job_grades VALUES ('B', 3000, 5999);
+INSERT INTO job_grades VALUES ('C', 6000, 9999);
+INSERT INTO job_grades VALUES ('D', 10000, 14999);
+INSERT INTO job_grades VALUES ('E', 15000, 24999);
+INSERT INTO job_grades VALUES ('F', 25000, 40000);
 
 --populate tables
 INSERT INTO regions VALUES ( 1,'Europe');
