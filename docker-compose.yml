@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  postgresdb:
+    image: postgres
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - POSTGRES_USER=$POSTGRESDB_USER
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+      - POSTGRES_DB=$POSTGRESDB_DATABASE
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s        
+
+
+  app:
+      image: node:20
+      working_dir: /usr/src/app
+      volumes:
+          - ./app:/usr/src/app
+      command: bash -c "npm install && npm start"
+      restart: unless-stopped
+      ports:
+          - 4500:4500
+      depends_on:
+        - postgresdb
+      environment:
+        - DB_HOST=postgresdb
+        - DB_USER=$POSTGRESDB_USER
+        - DB_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+        - DB_NAME=$POSTGRESDB_DATABASE
+        - DB_PORT=5432
+      stdin_open: true
+      tty: true
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+      PGADMIN_CONFIG_PROXY_X_HOST_COUNT: 1
+      PGADMIN_CONFIG_PROXY_X_PREFIX_COUNT: 1      
+    ports:
+      - "5050:80"      
+    depends_on:
+        postgresdb:
+            condition: service_healthy        

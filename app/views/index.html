@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="app.js"></script>
+    <title>Alpine JS</title>
+    <style>
+        html{
+            font-size: 0.85rem;
+            font-family: 'Segoe UI';
+        }
+        td{
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        table,
+        th,
+        tr,
+        td {
+            border-collapse: collapse;
+            border: 1px solid #d3d3d3
+        }
+        textarea{
+            font-family: Arial;
+        }
+        a {
+            color: blue;
+        }
+
+        .col {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+        }
+        .hdr th{
+            text-align: right;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+
+<body x-data="App()" x-init="getCourses()">
+    
+    <div class="col" x-show="courses.length !== 0 && page === 1">
+        <h2>Courses</h2>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Dept. Name</th>
+                <th>Credits</th>
+            </tr>
+            <template x-for="crs in courses">
+                <tr>
+                    <td x-text="crs.course_id"></td>
+                    <td>
+                        <a href="#" x-text="crs.title" @click="Edit(`${crs.course_id}`)"></a>
+                    </td>
+                    <td>
+                        <a href="#" x-text="crs.dept_name" @click="getDept(`${crs.dept_name}`)"></a>
+                    </td>
+                    <td x-text="crs.credits"></td>
+                </tr>
+            </template>
+        </table>
+        <!-- <pre x-text="JSON.stringify(courses, null, 4)"></pre> -->
+    </div>
+    <div class="col" x-show="Object.keys(dept).length !== 0 && page === 1">
+        <h2>Departments</h2>
+        <table class="hdr">
+            <tr>
+                <th>Name : </th>
+                <td x-text="dept.dept_name"></td>
+            </tr>
+            <tr>
+                <th>Building : </th>
+                <td x-text="dept.building"></td>
+            </tr>
+            <tr>
+                <th>Budget : </th>
+                <td x-text="dept.budget"></td>
+            </tr>
+
+        </table>
+        <pre x-text="JSON.stringify(dept, null, 4)"></pre>
+    </div>
+    <div x-show="page === 2">
+        <h2>Edit</h2>
+        <table class="hdr">
+            <tr>
+                <th>Id : </th>
+                <td>
+                    <input type="text" x-model="course.course_id" size="3"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Title : </th>
+                <td>
+                    <textarea x-model="course.title"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>Name : </th>
+                <td>
+                    <!-- <input type="text" x-model="course.dept_name"/> -->
+                    <select x-model="course.dept_name">
+                        <template x-for="dpt in depts">
+                            <option 
+                                x-text="dpt.dept_name"
+                                :selected="dpt.dept_name === course.dept_name"
+                            ></option>
+                        </template>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Credits : </th>
+                <td>
+                    <input type="text" x-model="course.credits" size="2"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button @click="Save()">Save</button>
+                </td>
+            </tr>
+        </table>
+        <pre x-text="JSON.stringify(course, null, 4)"></pre>
+    </div>
+</body>
+
+</html>
