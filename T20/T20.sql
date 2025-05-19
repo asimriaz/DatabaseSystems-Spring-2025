@@ -1,15 +1,15 @@
-CREATE TABLE [match] (
-  [id] INT,
-  [innings] INT,
-  [over] INT,
-  [ball] INT,
-  [runs] INT,
-  [bowler] VARCHAR(50),
-  [batsman] VARCHAR(50),
-  [type] VARCHAR(50)
+CREATE TABLE match (
+  id INT,
+  innings INT,
+  "over" INT,
+  ball INT,
+  runs INT,
+  bowler VARCHAR(50),
+  batsman VARCHAR(50),
+  type VARCHAR(50)
 );
 
-INSERT INTO [match] VALUES
+INSERT INTO match VALUES
 (1,1,0,1,0,'Henry','Rizwan','dot'),
 (2,1,0,2,0,'Henry','Rizwan','dot'),
 (3,1,0,3,1,'Henry','Rizwan','run'),
