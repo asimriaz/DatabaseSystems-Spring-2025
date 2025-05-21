@@ -585,7 +585,7 @@ INSERT INTO match VALUES
 (573,2,44,5,1,'Ellis','Khushdil','run'),
 (574,2,44,6,1,'Ellis','Rizwan','run'),
 (575,2,45,1,1,'Zampa','Rizwan','run'),
-(576,2,45,2,1,'Zampa','Khushdil','1 bye'),
+(576,2,45,2,1,'Zampa','Khushdil','bye'),
 (577,2,45,3,1,'Zampa','Rizwan','run'),
 (578,2,45,4,1,'Zampa','Khushdil','run'),
 (579,2,45,5,0,'Zampa','Rizwan','OUT'),
